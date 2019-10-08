@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pan.mapper.UserMapper"><!-- mapper动态代理。其底层自动实现Dao接口 -->
+    
+    <!--
+        结果映射，将类与数据表映射
+        type="User"中的User，在src/mybatis-conf.xml中声明
+    -->
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="gmtCreate" column="gmt_create"/>
+    </resultMap>
+ 
+    <!-- 用户登录 -->
+    <select id="userLogin" parameterType="User" resultMap="userResultMap">
+        select id,username,password,email,gmt_create from user where username = #{username} and password = #{password} 
+    </select>
+    
+    <!-- 用户注册 -->
+    <insert id="userRegister" parameterType="User">
+        insert into user(id, username, password, email, gmt_create) values(0, #{username},#{password}, #{email}, #{gmtCreate})
+    </insert>
+     
+    <!-- 用户注册查重 -->   
+    <select id="userRegCheck" parameterType="java.lang.String" resultType="java.lang.String">
+        select username from user where username = #{username}
+    </select>
+     
+    <!-- 列出用户信息 -->   
+    <select id="listUsers" resultMap="userResultMap">
+        select id,username,password,email,gmt_create from user
+    </select> 
+      
+    <!-- 根据ID获取用户信息 -->  
+    <select id="getUserById" parameterType="java.lang.Integer" resultMap="userResultMap">
+        select id,username,password,email,gmt_create from user where id = #{id}
+    </select>
+      
+    <!-- 根据名称获取用户信息 -->          
+    <select id="getUserByName" parameterType="java.lang.String" resultMap="userResultMap">
+        select id,username,password,email,gmt_create from user where username = #{username}
+    </select>
+    
+</mapper>

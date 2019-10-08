@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">                    
+
+    <context:component-scan base-package="pan.service" />
+    <context:component-scan base-package="pan.controller">
+        <context:include-filter type="annotation" 
+            expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" 
+            expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+    
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+            id="internalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- 存储区域设置信息
+         SessionLocaleResolver类通过一个预定义会话名将区域化信息存储在会话中。
+     -->
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+    
+    <!-- 国际化资源文件 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- 表示多语言配置文件在根路径下，以language开头的文件-->
+        <property name="basename" value="classpath:language"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor"
+              class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
+        </bean>
+        
+        <!-- 用户事件拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <mvc:exclude-mapping path=""/>
+            <bean class="pan.interceptor.UserInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
+</beans>
+
+

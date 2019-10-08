@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入配置文件src/jdbc.properties，并通过EL表达式获取配置文件内容-->
+    <properties resource="jdbc.properties"></properties>
+    <typeAliases>   
+       <typeAlias alias="User" type="pan.model.User"/>
+    </typeAliases> 
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <package name="pan/mapper"/>
+    </mappers>
+    
+</configuration>
+
+
