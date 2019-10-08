@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" title="XSL Formatting" href="./rss.xsl" media="all" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel> 
+        <title>赵栩旸的主页</title>
+        <description>订阅赵栩旸的个人主页</description>
+        <link>http://zxy97.com/</link>
+        <atom:link href="htttp://zxy97.com/rss/rss.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Thu, 07 Dec 2017 11:02:39 +0800</pubDate>
+        <lastBuildDate>Thu, 07 Dec 2017 11:02:39 +0800</lastBuildDate>
+        <generator>赵栩旸</generator>
+
+        <item>  
+            <title>zxy97网盘</title>  
+            <description>为文件的存储、管理与分享而生！</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 15:07:00</pubDate> 
+            <category>应用</category>
+            <link>http://pan.zxy97.com/</link>  
+            <guid>http://pan.zxy97.com/</guid>  
+        </item> 
+
+        <item>  
+            <title>zxy97博客</title>  
+            <description>zxy97博客 – 记录美好回忆</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 16:07:00</pubDate>
+            <category>应用</category>  
+            <link>http://blog.zxy97.com/</link>  
+            <guid>http://blog.zxy97.com/</guid>  
+        </item>
+
+        <item>  
+            <title>zxy97文件托管</title>  
+            <description>zxy97文件托管 – 免费的资源托管平台</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 16:09:00</pubDate>
+            <category>应用</category>  
+            <link>http://file.zxy97.com/</link>  
+            <guid>http://file.zxy97.com/</guid>  
+        </item>
+
+        <item>  
+            <title>zxy97图像识别</title>  
+            <description>zxy97图像识别 – 基于百度云SDK的图像识别、文字识别、人脸识别</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 16:19:00</pubDate>
+            <category>应用</category>  
+            <link>http://img.zxy97.com/</link>  
+            <guid>http://img.zxy97.com/</guid>  
+        </item>
+    
+        <item>  
+            <title>zxy97信息安全</title>  
+            <description>zxy97信息安全 – 对称加密，非对称加密，数字签名与认证</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 16:19:00</pubDate>
+            <category>应用</category>  
+            <link>http://dsa.zxy97.com/</link>  
+            <guid>http://dsa.zxy97.com/</guid>  
+        </item>
+    
+        <item>
+            <title>创新创业服务平台</title>  
+            <description>西北农林科技大学创新创业服务平台</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 16:19:00</pubDate>
+            <category>应用</category>  
+            <link>http://nwsuaf.club/</link>  
+            <guid>http://nwsuaf.club/</guid>  
+        </item>
+
+        <item>  
+            <title>zxy97短网址</title>  
+            <description>zxy97短网址 - 在线生成短网址</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 16:19:00</pubDate>
+            <category>应用</category>  
+            <link>http://dwz.zxy97.com/</link>  
+            <guid>http://dwz.zxy97.com/</guid>  
+        </item>
+        
+        <item>  
+            <title>zxy97在线制作</title>  
+            <description>zxy97在线制作 - 在线生成软件下载页面</description>  
+            <author>赵栩旸</author>  
+            <pubDate>2018-11-16 16:19:00</pubDate>
+            <category>应用</category>  
+            <link>http://ogdp.zxy97.com/</link>  
+            <guid>http://ogdp.zxy97.com/</guid>  
+        </item>
+        
+        
+    
+    </channel>
+</rss>
