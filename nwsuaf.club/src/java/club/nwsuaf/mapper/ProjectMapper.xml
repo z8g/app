@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.nwsuaf.mapper.ProjectMapper">
+<resultMap id="ProjectResultMap" type="Project">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="content" column="content"/>
+        <result property="logo" column="logo"/>
+        <result property="state" column="state"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtUpdate" column="gmt_update"/>
+        <result property="gmtEnd" column="gmt_end"/>
+        <result property="username" column="username"/>
+    </resultMap>
+  
+    <insert id="insert" parameterType="Project" useGeneratedKeys="true" keyProperty="id">
+        insert into project(id,name,type,content,logo,state,gmt_create,gmt_update,gmt_end,username) 
+        values(#{id},#{name},#{type},#{content},#{logo},#{state},#{gmtCreate},#{gmtUpdate},#{gmtEnd},#{username})
+    </insert>
+    
+    <update id="update" parameterType="Project">
+        update project
+        set name=#{name},type=#{type},content=#{content},logo=#{logo},state=#{state},gmt_update=#{gmtUpdate},gmt_end=#{gmtEnd}
+        where id=#{id}
+    </update>
+    
+    <delete id="delete" parameterType="Project">
+        delete from project
+        where id=#{id}  <if test="username != null"> and username = #{ username } </if>
+    </delete>
+    
+    <select id="list" resultMap="ProjectResultMap" parameterType="Project">
+        select id, name , type , content ,logo, state, gmt_create, gmt_update, gmt_end, username
+        from project
+        <where>
+            <if test="id != null"> id = #{ id } </if>
+            <if test="name != null"> 
+                <bind name="n" value="'%' + name + '%'"/>
+                 and name like #{n}
+            </if>
+            <if test="type != null"> and type = #{ type } </if>
+            <if test="state != null"> and state = #{ state } </if>
+            <if test="content != null"> 
+                <bind name="c" value="'%' + content + '%'"/>
+                 and content like #{c}
+            </if>
+            <if test="username != null"> and username = #{username} </if>
+        </where>
+        order by gmt_update desc
+    </select>
+</mapper>

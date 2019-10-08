@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.nwsuaf.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="User">
+        <id property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="realname" column="realname"/>
+        <result property="auth" column="auth"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="info" column="info"/>
+        <result property="logo" column="logo"/>
+        <result property="birth" column="birth"/>
+        <result property="tel" column="tel"/>
+        <result property="gender" column="gender"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="username">
+        insert into user(username,password,email,realname,auth,gmt_create,info,logo,birth,tel,gender) 
+        values(#{username},#{password},#{email},#{realname},#{auth},#{gmtCreate},#{info},#{logo},#{birth},#{tel},#{gender})
+    </insert>
+    
+    <update id="update" parameterType="User">
+        update user 
+        <set>
+            <if test="password != null"> password = #{ password },</if>
+            <if test="email != null"> email = #{ email },</if>
+            <if test="realname != null"> realname = #{ realname },</if>
+            <if test="auth != null"> auth = #{ auth },</if>
+            <if test="info != null"> info = #{ info },</if>
+            <if test="logo != null"> logo = #{ logo },</if>
+            <if test="birth != null"> birth = #{ birth },</if>
+            <if test="tel != null"> tel = #{ tel },</if>
+            <if test="gender != null"> gender = #{ gender }</if>
+        </set>
+        where username=#{username}
+    </update>
+    <delete id="delete" parameterType="User">
+        delete from user
+        where username=#{username}
+    </delete>
+    
+    <select id="list" resultMap="UserResultMap" parameterType="User">
+        select username,password,email,realname,auth,gmt_create,info,logo,birth,tel,gender
+        from user
+        <where>
+            <if test="username != null"> username=#{username} </if>
+            <if test="password != null"> and password=#{password} </if>
+            <if test="email != null"> and email=#{email} </if>
+            <if test="realname != null">  and realname=#{realname} </if>
+            <if test="auth != null"> and auth=#{auth} </if>
+            <if test="gender != null"> and gender=#{gender} </if>
+            <if test="birth != null"> and birth=#{birth} </if>
+        </where>
+        order by gmt_create desc
+    </select>
+</mapper>

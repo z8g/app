@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.nwsuaf.mapper.ApplyMapper">
+    <resultMap id="ApplyResultMap" type="Apply">
+        <id property="id" column="id"/>
+        <result property="realname" column="realname"/>
+        <result property="concat" column="concat"/>
+        <result property="content" column="content"/>
+        <result property="projectId" column="project_id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="username" column="username"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="Apply"  useGeneratedKeys="true" keyProperty="id">
+        insert into apply(id,realname,concat,content,gmt_create,project_id,username) 
+        values(#{id},#{realname},#{concat},#{content},#{gmtCreate},#{projectId},#{username})
+    </insert>
+    
+    <delete id="delete" parameterType="Apply">
+        delete from apply
+        where id=#{id} <if test="username != null"> and username = #{ username } </if>
+    </delete>
+
+    <select id="list" resultMap="ApplyResultMap" parameterType="Apply">
+        select id, realname, concat, content ,gmt_create,project_id,username
+        from apply
+        <where>
+            <if test="username != null"> and username = #{ username } </if>
+        </where>
+        order by gmt_create desc
+    </select>
+</mapper>

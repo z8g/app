@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.nwsuaf.mapper.ArticleMapper">
+<resultMap id="ArticleResultMap" type="Article">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="type" column="type"/>
+        <result property="content" column="content"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtUpdate" column="gmt_update"/>
+        <result property="username" column="username"/>
+    </resultMap>
+    
+    <insert id="insert" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
+        insert into article(id,title,type,content,gmt_create,gmt_update,username) 
+        values(#{id},#{title},#{type},#{content},#{gmtCreate},#{gmtUpdate},#{username})
+    </insert>
+    
+    <update id="update" parameterType="Article">
+        update article
+        set title=#{title},type=#{type},content=#{content},gmt_create=#{gmtCreate},gmt_update=#{gmtUpdate},username=#{username}
+        where id=#{id}
+    </update>
+    
+     <delete id="delete" parameterType="Article">
+        delete from article
+        where id=#{id} <if test="username != null"> and username = #{ username } </if>
+    </delete>
+    
+    <select id="list" resultMap="ArticleResultMap" parameterType="Article">
+        select id, title , type , content ,gmt_create,gmt_update,username
+        from article
+        <where>
+            <if test="id != null"> id = #{ id } </if>
+            <if test="title != null"> 
+                <bind name="t" value="'%' + title + '%'"/>
+                 and title like #{t}
+            </if>
+            <if test="type != null"> and type = #{ type } </if>
+            <if test="content != null"> 
+                <bind name="c" value="'%' + content + '%'"/>
+                 and content like #{c}
+            </if>
+            <if test="username != null"> and username = #{ username } </if>
+        </where>
+        order by gmt_update desc
+    </select>
+</mapper>
