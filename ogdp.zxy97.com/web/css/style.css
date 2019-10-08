@@ -1,0 +1,10 @@
+.label{
+    -webkit-box-shadow:2px 2px 2px #dfdfdf;
+    box-shadow: 2px 2px 2px #dfdfdf;
+    border: medium dotted #fff;
+}
+#logo{
+    height: 100%;
+    width: auto;
+}
+
