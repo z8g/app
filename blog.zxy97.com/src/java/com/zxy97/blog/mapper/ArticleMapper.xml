@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxy97.blog.mapper.ArticleMapper">
+  
+    <resultMap id="articleResultMap" type="com.zxy97.blog.model.Article">
+        <id property="id" column="id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtUpdate" column="gmt_update"/>
+        <result property="gmtDelete" column="gmt_delete"/>
+        <result property="title" column="title"/>
+        <result property="type" column="type"/>
+        <result property="auth" column="auth"/>
+        <result property="markdown" column="markdown"/>
+        <result property="html" column="html"/>
+        <result property="numComment" column="num_comment"/>
+        <result property="numRead" column="num_read"/>
+        <result property="authorUsername" column="author_username"/>
+    </resultMap>
+    
+    <insert id="articleInsert" parameterType="com.zxy97.blog.model.Article">
+        insert into article(id,gmt_create,title,type,auth,markdown,html,author_username)
+        values(0,#{gmtCreate},#{title},#{type},#{auth},#{markdown},#{html},#{authorUsername})
+    </insert>
+    
+    <update id="articleUpdate" parameterType="com.zxy97.blog.model.Article">
+        update article
+        set gmt_update=#{gmtUpdate},gmt_delete=#{gmtDelete},
+        title=#{title},type=#{type},auth=#{auth},markdown=#{markdown},
+        html=#{html},author_username=#{authorUsername}
+        where id=#{id}
+    </update>
+    
+    <update id="articleRecycle" parameterType="com.zxy97.blog.model.Article">
+        update article
+        set gmt_delete=#{gmtDelete}
+        where id=#{id}
+    </update>
+      
+    <update id="articleRecover">
+        update article
+        set gmt_delete=NULL
+        where id=#{id}
+    </update>
+    
+    <update id="articleAddReadNumber">
+        update article
+        set num_read=num_read+1
+        where id=#{id}
+    </update>
+    
+        
+    <delete id="articleDeleteById">
+        delete from article where id = #{id}
+    </delete>  
+    
+    <select id="ListArticlesByAuthorUsername" parameterType="java.lang.String" resultMap="articleResultMap">
+        select * from article
+        where author_username = #{username} and gmt_delete IS NULL
+        order by gmt_update desc
+    </select>
+       
+    <select id="getArticleById" parameterType="java.lang.Integer" resultMap="articleResultMap">
+        select * from article
+        where id = #{id} and gmt_delete IS NULL
+    </select>
+
+</mapper>

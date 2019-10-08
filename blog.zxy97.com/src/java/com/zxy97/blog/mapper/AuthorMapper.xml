@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxy97.blog.mapper.AuthorMapper">
+  
+    <insert id="authorRegister" parameterType="com.zxy97.blog.model.Author"><!-- mapper动态代理。其底层自动实现Dao接口 -->
+        insert into author(username,password,gmt_create) values(#{username}, #{password}, #{gmtCreate})
+    </insert>
+
+    <select id="authorRegisterCheck" parameterType="java.lang.String" resultType="java.lang.String">
+        select username from author where username = #{username}
+    </select>
+    
+    <select id="authorLogin" parameterType="com.zxy97.blog.model.Author" resultType="com.zxy97.blog.model.Author">
+        select * from author where username = #{username} and password = #{password} and gmt_delete IS NULL
+    </select>
+    
+    <select id="getAuthor" parameterType="java.lang.String" resultType="com.zxy97.blog.model.Author">
+        select * from author where username = #{username} and gmt_delete IS NULL
+    </select>
+ 
+</mapper>

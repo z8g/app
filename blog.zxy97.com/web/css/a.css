@@ -1,0 +1,21 @@
+a{
+    color:#1A8BE8;
+    text-decoration: none;
+}
+a:hover{
+    color:#1A9dE8;
+    text-decoration: underline;
+}
+.tip-warning{
+    color:#9fd574;
+}
+.tip-error{
+    color: red;
+}
+.tip-right{
+    color:#68b12f;
+}
+.tip-margin{
+    margin-left: 5px;
+    margin-right: 5px;
+}
