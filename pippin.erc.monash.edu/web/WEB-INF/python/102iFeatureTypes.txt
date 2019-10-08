@@ -1,0 +1,8 @@
+APAAC	Pc1.C
+CKSAAGP	aromatic.aromatic.gap1	postivecharger.aromatic.gap4
+CKSAAP	AL.gap1	GG.gap3	LV.gap3	ML.gap5	GC.gap2	VV.gap0	TV.gap1	LL.gap3	PK.gap2	VT.gap2	SL.gap1	GD.gap3	LI.gap5	LS.gap4	GG.gap4	AF.gap2	CP.gap2	VV.gap5	VG.gap2	VL.gap0	GP.gap5	DN.gap2	TV.gap3	DL.gap1	PD.gap4	AK.gap2	KL.gap0	NK.gap4	IV.gap0
+CTDD	hydrophobicity_ENGD860101.1.residue0	polarity.3.residue0	hydrophobicity_PRAM900101.2.residue0
+DDE	MF	FV	CK	SP	CP	AT	FT	CM	AV	KL	PP	GF	VT	MY	VV	RG	SK	DD	CI	LW	RA	TL	CV	RM	YT	CQ	MI	TF	TI	VN	EY	KN	MM	IF	DS	TD	LK	EC	DE	IG	AD	FS	LT	HD	MG	DI	VP	CL	EE	WT	AK	RC	FA	VA	CW	CC	WK	EF
+DPC	VV	VL	AV	SG	KL
+GTPC	alphaticr.negativecharger.negativecharger	negativecharger.negativecharger.uncharger	aromatic.uncharger.aromatic
+NMBROTO	CHAM820101.lag5
