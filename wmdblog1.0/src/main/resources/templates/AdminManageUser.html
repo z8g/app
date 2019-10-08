@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+    <head>
+        <#head title='管理员管理界面' />
+    </head>
+    <body>
+        <div class="container">
+            <#adminNav />
+            <div style="position:relative;" class="col-md-12">
+                <div style="width: 92%;position: absolute;left: 0;right: 0;	margin:0 auto;">
+                    <div>
+                        <h3 class="text-center well" style="margin-top:7rem">用户信息表</h3>
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>注册时间</th>
+
+                                    <th>用户名</th>
+                                    <th>密码</th>
+                                    <th>邮箱</th>
+                                    <th>身份</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?
+                                for(var userLP in pageInfo.list){
+                                ?>
+                                <tr>
+                                    <td>${userLP.id}</td>
+                                    <td>${userLP.gmtCreate!,dateFormat="yyyy-MM-dd HH:mm:ss"}</td>
+                                    <td>${userLP.username}</td>
+                                    <td><input class="form-control" name="password" value="" placeholder="重置密码" required="required" /></td>
+                                    <td>${userLP.email}</td>
+                                    <?
+                                    if(userLP.auth == 0){
+                                    ?>
+                                    <td>用户</td>
+                                    <?
+                                    }else{
+                                    ?>
+                                    <td>操作员</td>
+                                    <?
+                                    }
+                                    ?>
+                                    <td>
+                                        <a href="${ctxPath}/admin/manage/user/update/${userLP.id}" class="btn btn-info" >修改</a>
+                                        <a class="btn btn-danger" id="delete" onclick="if (confirm('是否确定删除')){ window.location.href='${ctxPath}/admin/manage/user/delete/${userLP.id}'}">删除</a>
+                                    </td>
+                                </tr>
+                                <?   
+                                }
+                                ?>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <div>
+                        <#pagebar />
+                    </div>
+                    <#footer />
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            //获取验证码
+            function getVerify(obj, uri) {
+                obj.src = getLocalhostPath() + uri + '?f=' + Math.random();
+            }
+        </script>
+    </body>
+</html>
+

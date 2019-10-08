@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <#head title='管理员管理界面' />
+    </head>
+    <body>
+        <div class="container">
+            <#adminNav />
+            <div style="position:relative;" class="col-md-12">
+                <div style="width: 92%;position: absolute;left: 0;right: 0;margin:0 auto;">
+                    <div>
+                        <h3 class="text-center well" style="margin-top:7rem">用户文章信息表</h3>
+                        <table class="table table-hover table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>标题</td>
+                                    <td>个人分类</td>
+                                    <td>系统分类</td>
+                                    <td>标签</td>
+                                    <td>创建时间</td>
+                                    <td>修改时间</td>
+                                    <td>操作</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <?
+                                for(var articleLP in pageInfo.list){
+                                ?>
+                                <tr>
+                                    <td name="id">${articleLP.id}</td>
+                                    <td><a href="${ctxPath}/username/article/details/${articleLP.id}">${articleLP.title}</a></td>
+                                    <td><input name="categpory" value="${articleLP.category}"  class="form-control" /></td>
+                                    <td><input name-="type" class="form-control" value="${articleLP.type}" /></td>
+                                    <td><input name="tags" class="form-control" value="${articleLP.tags}" /></td>
+                                    <td>${articleLP.gmtUpdate,dateFormat="yyyy-MM-dd HH:mm:ss"}</td>
+                                    <td>${articleLP.gmtCreate,dateFormat="yyyy-MM-dd HH:mm:ss"}</td>
+                                    <td>
+                                        <a href="${ctxPath}/admin/manage/article/delete/${articleLP.id}" class="btn btn-danger article-delete">删除</a>
+                                    </td>
+                                </tr>
+                                <?   
+                                }
+                                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <#pagebar />
+                    </div>
+                    <#footer />
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            $(function () {
+                $('.article-delete').bind('click', function () {
+                    if (!confirm('确认删除？')) {
+                        window.event.returnValue = false;
+                    }
+                });
+
+            });
+            
+            function getLocalhostPath() {
+
+                //获取当前网址，如： http://localhost:8080/Tmall/index.jsp 
+                var curWwwPath = window.document.location.href;
+
+                //获取主机地址之后的目录如：/Tmall/index.jsp 
+                var pathName = window.document.location.pathname;
+                var pos = curWwwPath.indexOf(pathName);
+
+                //获取主机地址，如： http://localhost:8080 
+                var localhostPath = curWwwPath.substring(0, pos);
+                return localhostPath + "/";
+
+                //获取带"/"的项目名，如：/Tmall 
+                //var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);     
+            }
+
+            //获取验证码
+            function getVerify(obj, uri) {
+                obj.src = getLocalhostPath() + uri + '?f=' + Math.random();
+            }
+        </script>
+    </body>
+</html>
+

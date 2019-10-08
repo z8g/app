@@ -1,0 +1,9 @@
+<div class="col-md-12 text-center">
+    <?for(var i = 1; i <= pageInfo.pages!; i++){
+    if( i == pageInfo.pageNum) {?>
+    <button class="btn btn-success">${pageInfo.pageNum}</button>
+    <?}else{?>
+    <a href="${ctxPath}/${pageUri}/${i}" class="btn btn-default">${i}</a> 
+    <?}
+    }?>
+</div>

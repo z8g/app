@@ -1,0 +1,179 @@
+<!-- 作者 -->
+<div class="row">
+    <div class="col-md-12 user-head-img" >
+
+        <?   
+
+        var path=nickimg!;
+        ?>
+        <?  
+        if (path==null)      
+        ?>
+        <?{?>
+        <img src="https://t11.baidu.com/it/u=4160846947,4100080746&fm=76" alt="User head Img" class="img-circle"  id="show-img"/>
+        <?} ?>
+        <?else{?>
+        <img src="${ctxPath}/${nickimg}" alt="User head Img" class="img-circle"  id="show-img"/>
+        <?}?>
+        <a href="#" target="_blank">
+            ${author.username!'username'}
+        </a>
+        <?if(isAuthor!false){?>
+        <a href="#info" target="_blank" data-toggle="tab">
+            [修改个人信息]
+        </a>
+        <?}?>
+
+
+    </div>
+</div>
+<!-- 作者 end -->
+
+<!-- 主页信息 -->
+<div class="row">
+    <div class="col-md-12" >
+        <table class="table table-condensed text-center" >
+            <tr>
+                <td>文章</td>
+                <td>访客</td>
+                <td>粉丝</td>
+                <td>关注</td>
+            </tr>
+            <tr>
+                <td>${articleListSize!}</td>
+                <td>${visitorListSize!}</td>
+                <td>${fansListSize!}</td>
+                <td>${noticeListSize!}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- 主页信息 end -->
+
+<!-- 最近发表 -->
+<div class="row">
+    <div class="col-md-12" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    最近发表
+                </strong>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <?
+                    for(var articleLP in lastPostPageInfo.list!){
+                    ?>
+                    <li class="list-group-item">
+                        <p><a href="${ctxPath}/${author.username}/article/details/${articleLP.id!}">${articleLP.title!}</a></p>
+                        <p class="small text-right">${articleLP.gmtUpdate!,dateFormat="yyyy-MM-dd HH:mm:ss"}</p>
+                    </li>
+                    <?
+                    } elsefor {
+                    ?>
+                    <li class="list-group-item">
+                        <p><a href="#">无记录</a></p>
+                    </li>
+                    <?
+                    }
+                    ?>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 最近发表 end --> 
+
+<!-- 标签 -->
+<div class="row">
+    <div class="col-md-12" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                    标签
+                </strong>
+            </div>
+            <div class="panel-body">
+                <div class="btn-group-sm">
+                    <?for(var tagLP in tagSet!){?>
+                    <a href="${ctxPath}/${author.username}/article/tag/${tagLP}" class="btn btn-default">${tagLP}</a>
+                    <?}?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 标签 end -->
+
+<!-- 分类 -->
+<div class="row">
+    <div class="col-md-12" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    分类
+                </strong>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <?
+                        for(var categoryLP in categoryMap!){
+                        var key = categoryLP.key;
+                        var value = categoryLP.value;
+                        ?>
+                        <tr>
+                            <td><a href="${ctxPath}/${author.username}/article/category/${key}">${key}</a></td>
+                            <td class="text-right">${value}篇</td>
+                        </tr>
+                        <?}?>
+
+                    </tbody>
+
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 分类 end -->
+
+<!-- 归档 -->
+<div class="row">
+    <div class="col-md-12" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    归档
+                </strong>
+            </div>
+            <div class="panel-body">
+
+                <table class="table table-striped">
+                    <tbody>
+                        <?
+                        for(var yearMonthLP in yearMonthMap!){
+                        var key = yearMonthLP.key;
+                        var value = yearMonthLP.value;
+                        ?>
+                        <tr>
+                            <td><a href="${ctxPath}/${author.username}/article/yearmonth/${key}">${key!}</a></td>
+                            <td class="text-right">${value!}篇</td>
+                        </tr>
+                        <?}?>
+                    </tbody>
+
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 归档 end -->

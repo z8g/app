@@ -1,0 +1,46 @@
+<!-- 导航 -->
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-sidebar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img src="${ctxPath}/assets/images/logo.png" alt="blog.zhaoxuyang.net" id="logo">
+        </a>
+    </div>
+    <div class="collapse navbar-collapse" id="nav-sidebar">
+        <ul class="nav navbar-nav">
+            <li><a href="${ctxPath}/index">首页</a></li>
+            <?
+            if(session.user!=null && session.user.username!=null){
+            ?>
+            <li><a href="${ctxPath}/${session.user.username}/article/list/1">用户主页</a></li>
+            <li><a href="${ctxPath}/user/article/new"><i class="fa fa-edit"></i> 写文章</a></li>
+            
+            <li><a href="${ctxPath}/guest/logout">退出登录</a></li>
+
+            <?
+            } else {
+            ?>
+            <li><a href="${ctxPath}/guest/sign">注册/登录</a></li>
+            <?
+            }
+            ?>
+
+        </ul>
+        <div class="navbar-form navbar-right">
+            <div class="form-group">
+                <input class="form-control" type="search" id="search-keyword" placeholder="输入关键词搜索文章">
+            </div>
+
+            <div class="form-group">
+                <button class="form-control" id="search-btn">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- 导航 end -->

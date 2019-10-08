@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- UserMapper.xml -->
+
+<mapper namespace="net.zhaoxuyang.blog.mapper.NoticeMapper">
+    <resultMap id="NoticeResultMap" type="net.zhaoxuyang.blog.model.Notice">
+        <id property="id" column="id"/>
+        <result property="user_id" column="user_id"/>
+        <result property="notice_id" column="notice_id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+    </resultMap>
+    
+    <select id="listNotice" parameterType="User" resultMap="NoticeResultMap">
+        select id , user_id , notice_id , gmt_create
+        from notice
+        where user_id = #{ id }
+    </select>  
+    
+    <select id="listFan" parameterType="User" resultMap="NoticeResultMap">
+        select id , user_id , notice_id , gmt_create
+        from notice
+        where notice_id = #{ id }
+    </select>
+    
+    <select id="select"  parameterType="Map" resultType="int">
+        select count(*)
+        from notice
+        where user_id =#{ user_id } and notice_id = #{ notice_id }
+    </select>
+    
+    <insert id="insert" parameterType="Map" useGeneratedKeys="true" keyProperty="id">
+        insert into notice( id , user_id , notice_id , gmt_create )
+        values( #{ id },  #{ user_id },  #{ notice_id },  #{ gmt_create })
+    </insert>
+    
+    <delete id="delete" parameterType="Map">
+        delete from notice
+        where user_id =#{ user_id } and notice_id = #{ notice_id }
+    </delete>
+    
+    <select id="countNotice" parameterType="User" resultType="int">
+        select count(*) id , user_id , notice_id
+        from notice
+        where user_id = #{id}
+    </select>
+    
+    <select id="countFan" parameterType="User" resultType="int">
+        select count(*) id , user_id , notice_id
+        from notice
+        where notice_id = #{id}
+    </select>
+
+</mapper>
+

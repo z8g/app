@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+    <#head title='${exceptionTitle}' />
+    <div class="container">
+        <#nav />
+
+        <section class="row">
+
+            <div class=" text-center col-md-12 pull-right fade in active">
+                <div class="well">
+                    <h2 class="text-danger "> ${exceptionTitle} </h2>
+                    <br /><br />
+                    消息： ${exceptionMessage}
+                    <br /><br />
+                    <br /><br />
+                    <a href="${ctxPath}/" class="btn btn-primary btn-sm">首页</a>
+                    <a href="#" class="btn btn-warning btn-sm" id="back-btn">返回</a>
+                </div>
+
+            </div>
+
+        </section>
+
+        <#footer />
+    </div>
+
+    <script>
+        $(function () {
+            $('#back-btn').bind('click', function () {
+                window.history.back(-1);
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+

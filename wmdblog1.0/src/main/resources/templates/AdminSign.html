@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+    <head>
+        <#head title='管理员主页' />
+    </head>
+    <style>
+        .fix{
+            margin-top: 7.4rem; 
+        }
+    </style>
+    <body> 
+       <div class="container">
+            <#adminNav />
+
+            <!-- 管理员首页   -->
+            <div class="fix">
+                <section class="row">
+
+                    <div class="col-md-4 col-md-offset-1" style="height:483px">
+                        <div class="panel panel-default">
+				<div class="panel-heading">管理员信息</div>
+				<div class="panel-body  text-center">
+                                    <img src="${ctxPath}/assets/images/1.jpg" class="img-responsive img-rounded img-thumbnail text-center" alt="me" height="9rem">
+					<p class="text-center text-primary">Whmjack</p>
+					<address>
+						<strong>Shannxi YangLing</strong><br>
+						<span class="fa fa-home" title="Address"> <code>陕西省咸阳市杨陵区</code></span>
+						<span class="fa fa-home" title="PostalCode"> <kbd>712100</kbd></span><br>
+						<span class="fa fa-home" title="Mobile"> 15922267301</span>
+						<span class="fa fa-home" title="Email"> 845064182@qq.com</span>
+					</address>
+				</div>
+			</div>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="login">
+                                <div class="well well-lg" style="height:483px">
+
+                                    <form action="${ctxPath}/admin/login" method="POST">
+                                        <div class="form-group">
+                                            <label class="control-label"> <i class="fa fa-user"></i> 管理员名称 </label>
+                                            <input name="adminUsername" value="admin" type="text" class="form-control" required="required" placeholder="请输入用户名/邮箱" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label"> <i class="fa fa-lock"></i> 管理员密码 </label>
+                                            <input name="adminPassword" value="admin" type="password" class="form-control" required="required"  placeholder="请输入密码"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label"> <i class="fa fa-font"></i> 验证码 </label>
+                                            <div class="form-inline">
+                                                <input name="verifyCode" type="text" id="admin-login-verify-code" class="form-control" placeholder="请输入验证码" maxlength="4">
+                                                <img class="btn btn-default" id="admin-login-verify-img" src="${ctxPath!}/admin/login/verify" alt="更换验证码" height="48" onclick="getVerify(this, 'admin/login/verify');">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button id="login-btn" class="btn btn-success form-control">登录</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <#footer />
+</div>
+
+
+<script>
+    $('#login-btn').bind('click', function() {
+
+        //验证码
+        $.ajax(getLocalhostPath() + 'admin/login/verify', {
+            data: {
+                verifyCode: $('#admin-login-verify-code').val()
+            },
+            type: 'POST',
+            success: function(check) {
+                if (check) {
+                    $('#login-btn').submit();
+                } else {
+                    return false;
+                }
+            },
+            fail: function(data) {
+                console.log(data);
+            }
+        });
+    });
+
+    function getLocalhostPath() {
+
+        //获取当前网址，如： http://localhost:8080/Tmall/index.jsp 
+        var curWwwPath = window.document.location.href;
+
+        //获取主机地址之后的目录如：/Tmall/index.jsp 
+        var pathName = window.document.location.pathname;
+        var pos = curWwwPath.indexOf(pathName);
+
+        //获取主机地址，如： http://localhost:8080 
+        var localhostPath = curWwwPath.substring(0, pos);
+        return localhostPath + "/";
+
+        //获取带"/"的项目名，如：/Tmall 
+        //var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);     
+    }
+
+    //获取验证码
+    function getVerify(obj, uri) {
+        obj.src = getLocalhostPath() + uri + '?f=' + Math.random();
+    }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+    <#head title='首页' />
+
+    <div class="container">
+        <#nav />
+
+        <!-- 用户主页  -->
+        <section class="row">
+            <div class="col-md-2 col-sm-12">
+                <#indexsidebar />
+            </div>
+            <div class="col-md-8 col-sm-12 fade in active">
+
+                <div class="tab-content">
+
+                    <div class="tab-pane fade in active">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="list-group" class="article-list">
+
+                                    <?for(var articleLP in pageInfo.list){?>
+                                    <li class="list-group-item">
+                                        <h3 class="text-center">
+                                            <a href="${ctxPath}/${articleLP.user.username}/article/details/${articleLP.article.id}">${articleLP.article.title}</a>
+                                        </h3>
+                                        <p class=text-left">
+                                            <i class="fa fa-quote-left text-info" aria-hidden="true"></i>
+                                            ${articleLP.article.summary}
+                                        </p>
+                                        <div class="text-right">
+                                            <br/>
+                                            <span class="article-item-entry btn">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                ${articleLP.article.gmtUpdate!,dateFormat="yyyy-MM-dd HH:mm:ss"}
+                                            </span>
+                                            <span class="article-item-entry btn">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                                <a href="${ctxPath}/${articleLP.user.username}/article/category/${articleLP.article.category}">${articleLP.article.category}</a>
+                                            </span>
+                                            <span class="article-item-entry btn">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                                ${articleLP.article.type}
+                                            </span>
+                                            <span class="btn-group-xs article-item-entry">
+                                                <i class="fa fa-tags"></i>
+                                                <?for( var tagsLP in strutil.split (articleLP.article.tags,"\\|")){?>
+                                                <a href="${ctxPath}/${articleLP.user.username}/article/tag/${tagsLP}" class="btn btn-default">${tagsLP}</a>
+                                                <?}?>
+                                            </span>
+                                            <span class="article-item-entry btn">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                                <a href="${ctxPath}/${articleLP.user.username}">${articleLP.user.username}</a>
+                                            </span>
+                                            <br/>
+
+                                        </div>
+                                    </li>
+
+                                    <?}?>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <#pagebar />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-2 col-sm-12">
+                <ul class="list-group text-center">
+                    <li class="list-group-item list-group-item-heading">
+                        <span class="label label-success">推荐阅读</span>
+                    </li>
+                 
+                    <li class="list-group-item">
+                        <a href="${ctxPath}/zhaoxuyang/article/details/116047">快速编制会计分录</a>
+                    </li>
+                    <li class="list-group-item">
+                <a href="${ctxPath}/zhaoxuyang/article/details/116051">中间件</a>
+
+                    </li>
+                    <li class="list-group-item">
+                        <a href="${ctxPath}/zhaoxuyang/article/details/116050">JavaScript异步编程</a>
+
+                    </li>
+                    <li class="list-group-item">
+                        <a href="${ctxPath}/zhaoxuyang/article/details/116048">JavaEE复习笔记</a>
+
+                    </li>
+                    <li class="list-group-item">
+                        <a href="${ctxPath}/zhaoxuyang/article/details/116045">电商支付复习考点</a>
+
+                    </li>
+                    <li class="list-group-item">
+                        <a href="${ctxPath}/zhaoxuyang/article/details/116046">不同字符统计工具</a>
+
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+        </section>
+        <!-- 用户主页 end-->
+
+        <#footer />
+    </div>
+
+    <script>
+        $(function () {
+            $.ajax("${ctxPath}/zhaoxuyang/article/list", {
+                data: {
+
+                },
+                success: function (data) {
+                    console.log(data);
+                    //location.href = "${ctxPath}/${session.user.username!}/article/list";
+                },
+                fail: function () {
+                    alert("提交失败！服务端未响应！");
+                },
+                type: "POST"
+            });
+        });
+    </script>
+</body>
+
+</html>
+

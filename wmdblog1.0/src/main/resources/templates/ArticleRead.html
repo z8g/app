@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <#head title='MarkDown预览页' />
+        <!-- MarkDown 插件 -->
+        <link rel="stylesheet" href="${ctxPath}/assets/plugins/markdown/editormd.css" />
+        <script src="${ctxPath}/assets/plugins/markdown/editormd.js"></script>   
+        <script src="${ctxPath}/assets/js/markdown-read.js"></script>
+        <!-- MarkDown 插件 end -->
+    </head>
+    <body>
+        <div class="container">
+            <#nav />
+
+            <!-- 文章详情-->
+            <section class="row">
+                <div class="col-md-3">
+                    <#sidebar />
+                </div>
+                <!-- 文章详情-->
+                <div class="col-md-9">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <br/><h3><strong>${article.title!}</strong></h3><br/>
+                            <p class="small">
+                                 作者：${author.username!} 
+                                 更新：${article.gmtUpdate!,dateFormat="yyyy-MM-dd HH:mm:ss"} | 
+                                 浏览：${countArticle}
+                            </p>
+                        </div>
+                        <div class="panel-body">
+                            <div id="test-editormd">
+                                <textarea style="display:none;">${article.markdown!}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 文章详情 end -->
+
+            </section>
+            <!-- 文章详情 end-->
+
+            <#footer />
+
+        </div>
+
+    </body>
+</html>
+

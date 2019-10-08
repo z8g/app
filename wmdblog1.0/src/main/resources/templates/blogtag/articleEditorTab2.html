@@ -1,0 +1,76 @@
+<ul id="myTab" class="nav nav-tabs">
+
+    <li class="active">
+        <a href="#article-edit" data-toggle="tab">
+            正文内容
+        </a>
+    </li>
+    <li>
+        <a href="#article-info" data-toggle="tab">
+            文章信息
+        </a>
+    </li>
+    <li>
+        <a href="#" id="article-submit" tabindex="-1" data-toggle="tab">
+            发布文章
+        </a>
+    </li>
+    <li>
+        <a href="#" id="article-delete" tabindex="-1" data-toggle="tab">
+            删除文章
+        </a>
+    </li>
+    <li>
+        <a href="${ctxPath}/${session.user.username!}/article/list" id="aricle-exit"  tabindex="-1" >
+            退出编辑
+        </a>
+    </li>
+    <li class="dropdown">
+        <a href="#" id="myTabDrop2" class="dropdown-toggle" data-toggle="dropdown">
+            选项
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop2">
+            <li>
+                <a href="#article-theme" data-toggle="tab">
+                    主题设置
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="article-save" tabindex="-1" data-toggle="tab">
+                    保存到草稿箱
+                </a>
+            </li>
+            <li>
+                <a href="#" id="article-recovery" tabindex="-1" data-toggle="tab">
+                    从草稿箱恢复
+                </a>
+            </li>
+<!--            <li>
+                <a href="#" id="article-auto-save" tabindex="-1" data-toggle="tab">
+                    未自动保存
+                </a>
+            </li>-->
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" id="myTabDrop2" class="dropdown-toggle" data-toggle="dropdown">
+            分享
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop3">
+            <li>
+                <a href="#" id="share-qqzone" tabindex="-1" data-toggle="tab">
+                    QQ空间
+                </a>
+            </li>
+            <li>
+                <a href="#" id="share-weibo" tabindex="-1" data-toggle="tab">
+                    新浪微博
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>

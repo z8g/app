@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.zhaoxuyang.blog.mapper.MoreToOneMapper">
+    <resultMap id="ArticleListItemResultMap" type="net.zhaoxuyang.blog.model.ArticleListItem">
+ 
+        <association property="article" javaType="Article">
+            <id property="id" column="id" />
+            <result property="title" column="title"/>
+            <result property="category" column="category"/>
+            <result property="gmtCreate" column="gmt_create"/>
+            <result property="gmtUpdate" column="gmt_update"/>
+            <result property="userId" column="user_id"/>
+            <result property="markdown" column="markdown"/>
+            <result property="summary" column="summary"/>
+            <result property="tags" column="tags"/>
+            <result property="auth" column="auth"/>        
+            <result property="type" column="type"/>    
+        </association>
+        
+        <association property="user" javaType="User">
+            <id property="id" column="uid" />
+            <result property="username" column="username"/>
+            <result property="salt" column="salt"/>
+            <result property="password" column="password"/>
+            <result property="email" column="email"/>
+            <result property="gmtCreate" column="gmt_create"/>
+        </association>
+    </resultMap>
+    
+    
+    <select id="listLikeTitleOrContent" parameterType="Article" resultMap="ArticleListItemResultMap">
+        select user.id uid, user.username, user.salt, user.email, user.gmt_create, 
+        article.id, article.title, article.category, article.gmt_create, article.gmt_update , 
+        article.summary, article.tags, article.auth, article.type 
+        from user, article
+        <where>
+            (<if test="title != null and title != ''">
+                <bind name="title2" value="'%' + title + '%'" />
+                title LIKE #{ title2 }
+            </if>
+            <if test="markdown != null and markdown != ''">
+                <bind name="markdown2" value="'%' + markdown + '%'" />
+                or markdown LIKE #{ markdown2 }
+            </if>)
+            and article.user_id = user.id
+            and article.auth = 0
+        </where>
+        order by gmt_update desc
+    </select>
+  
+    <select id="getArticleListItem" resultMap="ArticleListItemResultMap">
+        select user.id uid, user.username, user.salt, user.email, user.gmt_create, 
+        article.id, article.title, article.category, article.gmt_create, article.gmt_update , 
+        article.markdown, article.summary, article.tags, article.auth, article.type 
+        from user, article
+        where user.id = article.user_id
+        and article.id = #{ id }
+    </select>
+    
+    <!--多对一list-->
+    <select id="listArticleItem" resultMap="ArticleListItemResultMap">
+        select user.id uid, user.username, user.salt, user.email, user.gmt_create, 
+        article.id, article.title, article.category, article.gmt_create, article.gmt_update , 
+        article.summary, article.tags, article.auth, article.type 
+        from user, article
+        where user.id = article.user_id and article.auth = 0
+    </select>
+    
+    <!--首页根据type list-->
+    <select id="listIndexTypeItem" parameterType="Article" resultMap="ArticleListItemResultMap">
+        select user.id uid, user.username, user.salt, user.email, user.gmt_create, 
+        article.id, article.title, article.category, article.gmt_create, article.gmt_update , 
+        article.summary, article.tags, article.auth, article.type 
+        from user, article
+        <where>
+            user.id = article.user_id
+            <if test="auth != null">
+                and article.auth = #{ auth }
+            </if>
+            <if test="type != null">
+                and article.type = #{ type }
+            </if>
+        </where>    
+        order by gmt_update desc
+    </select>
+
+</mapper>
+
+

@@ -1,0 +1,52 @@
+<!-- 导航 -->
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-sidebar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img src="${ctxPath}/assets/images/logo.png" alt="blog.zhaoxuyang.net" id="logo">
+        </a>
+    </div>
+    <div class="collapse navbar-collapse" id="nav-sidebar">
+        <ul class="nav navbar-nav">
+            <li><a href="${ctxPath}/">客户端首页</a></li>
+            <li><a href="${ctxPath}/admin/manage/user/list"><i class="fa fa-user"></i> 用户列表</a></li>
+            <li><a href="${ctxPath}/admin/manage/article/list"><i class="fa fa-file-text"></i> 文章列表</a></li>
+            <li><a onclick="databasebackup();" ><i class="fa fa-database"></i>数据库备份</a></li>
+            <li><a href="${ctxPath}/admin/logout"><i class="fa fa-sign-out"></i> 退出登录</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" action="" target="_blank">
+            <div class="form-group">
+                <input class="form-control" type="search" placeholder="">
+            </div>
+            <div class="form-group">
+                <button class="form-control" type="submit">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<script>
+     function databasebackup() {
+                $.ajax({
+                    url: "/admin/databasebackup",
+                    type: "post",
+                    datatype: "json",
+                    success: function(result) {
+                        console.log(result);
+                        if (result === "success") {
+                            alert('Success', '数据库备份成功！');
+                        }
+                        else {
+                            alert('Error', '数据库备份失败！');
+                        }
+                    }
+                })
+            }
+</script>
+<!-- 导航 end -->

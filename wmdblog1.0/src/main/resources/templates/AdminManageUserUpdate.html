@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+        <#head title='修改用户信息' />
+    </head>
+    <body>
+        <div class="container" >
+            <#adminNav />
+
+            <div class="col-md-12">
+
+                <h4 class="well text-center">
+                    修改 ${editUser.username} 的信息
+                </h4>
+                <form class="form-group" action="${ctxPath}/admin/manage/user/update/${editUser.id}" method="POST">
+                    <div class="form-group">
+                        <label class="control-label">
+                            ID：
+                        </label>
+                        <input class="form-control" name="id" value="${editUser.id}" readonly="readonly" />
+                    </div>             
+                    <div class="form-group">
+                        <label class="control-label">
+                            注册时间：
+                        </label>
+                        <input class="form-control" name="gmtCreate" value="${editUser.gmtCreate}" readonly="readonly" />
+                    </div>             
+
+                    <div class="form-group">
+                        <label class="control-label">
+                            用户名：
+                        </label>
+                        <input class="form-control" name="username" value="${editUser.username}" required="required"  />
+                    </div>  
+                    <div class="form-group">
+                        <label class="control-label">
+                            重置密码：
+                        </label>
+                        <input class="form-control" name="password" value="" placeholder="请输入新密码" />
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label">
+                            邮箱：
+                        </label>
+                        <input class="form-control" name="email" type="email" value="${editUser.email}" required="required"  />
+                    </div>  
+                    <div class="form-group">
+                        <label class="control-label">
+                            身份：
+                        </label>
+                        <select name="auth" class="form-control">
+                            <?
+                            if(editUser!=null && editUser.auth == 0){
+                            ?>
+                            <option value="0">用户</option>
+                            <option value="1">操作员</option>
+                            <?        
+                            }else{
+                            ?>
+                            <option value="0">用户</option>
+                            <option value="1" selected="selected">操作员</option>
+                            <? 
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="reset" class="btn btn-warning">重置</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <#footer />
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        $('button[type="submit"]').bind('click', function () {
+            if (!confirm('确认提交？')) {
+                window.event.returnValue = false;
+            }
+        });
+    });
+    
+    //获取验证码
+    function getVerify(obj, uri) {
+        obj.src = getLocalhostPath() + uri + '?f=' + Math.random();
+    }
+</script>
+</body>
+</html>
+

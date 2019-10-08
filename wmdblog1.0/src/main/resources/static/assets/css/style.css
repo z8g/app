@@ -1,0 +1,94 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+audio, canvas, video {
+    display: inline-block;
+}
+nav a{
+    font-size: 1.2em;
+}
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+ul, ol {
+    /*list-style: none;*/
+}
+
+.clear {
+    *zoom: 1; /* for IE 6/7 */
+}
+
+.clear:before, .clear:after {
+    height: 0; 
+    content: "";
+    font-size: 0;
+    display: table;
+    line-height: 0; /* for Opera */
+    visibility: hidden;
+}
+
+.clear:after {
+    clear: both;
+}
+
+body{
+    font-size: 14px;
+    color: #666;
+    font-family: "宋体";
+    width:100%;
+    margin:0px auto;
+}
+.label{
+    -webkit-box-shadow:2px 2px 2px #dfdfdf;
+    box-shadow: 2px 2px 2px #dfdfdf;
+    border: medium dotted #fff;
+}
+.container{
+    width:100%;
+}
+#nav-sidebar{
+    padding: 0px 15px;
+}
+#logo{
+    height: 100%;
+    width: auto;
+}
+.user-head-img{
+    margin-bottom: 20px;
+}
+.user-head-img img{
+    width: 80px;
+    height: 80px;
+}
+.user-head-img span{
+    font-size: 20px;
+    font-weight: bolder;
+    padding-left: 10px;
+}
+.article-item-entry{
+    margin: 10px;
+}
+caption{
+    text-align: center;
+    font-size: 2.3em;
+    color: #ff20d5;
+}
+

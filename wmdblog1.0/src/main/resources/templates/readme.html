@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+    <head>
+        <title>title</title>
+    </head>
+    <body>
+        <p>aa</p>
+
+        <?
+            var a = 2;
+            var b = 3;
+            var f = [1,2,3];
+            var i = a + b;
+            var result = a + b;
+        ?>
+        
+        
+        hello 2+3=${result}
+userLP.index 当前的索引，从1开始<br />
+userLP.size 集合的长度<br />
+userLP.first 是否是第一个<br />
+userLP.last 是否是最后一个<br />
+userLP.even 索引是否是偶数<br />
+userLP.odd 索引是否是奇数<br />
+
+
+        <?
+        var map = {'a':1,'b':2};
+        for(entry in map){
+                var key = entry.key;
+                var value = entry.value;
+                print(value);
+        };
+        
+        
+        
+        
+        
+/*        var user = ....
+user.name="joelli";
+user.friends[0] = getNewUser();
+user.map["name"] = "joelli";*/
+
+
+var list = [];
+for(item in list){
+
+}elsefor{
+        print("未有\n记录");
+}
+
+
+var bb = 1;
+select(bb){
+        case 0,1:
+                print("it's small int");
+        case 2,3:
+                print("it's big int");
+        default:
+                print("error");
+}
+/*
+try{
+        1/0;
+}catch(error){
+        print("暂时无数据");
+}
+*/
+
+
+print(trim(date(),'yyyy年MM月'));
+
+
+/*
+安全输出表达式可以包括
+
+字符串常量,如 ${user.count!"无结果"}
+boolean常量 ${user.count!false}
+数字常量，仅限于正数，因为如果是负数，则类似减号，容易误用，因此，如果需要表示负数，请用括号，如${user.count!(-1)}
+class直接调用，如 ${user.count!@ User.DEFAULT_NUM}
+方法调用，如 ${user.count!getDefault() }
+属性引用，如 ${user.count!user.maxCount }
+任何表达式，需要用括号
+*/
+
+
+        ?>
+        
+        
+        <pre>
+
+
+
+
+
+Beetl内置函数请参考附录，以下列出了常用的函数
+
+date 返回一个java.util.Date类型的变量，如 date() 返回一个当前时间(对应java的java.util.Date); ${date( "2011-1-1" , "yyyy-MM-dd" )} 返回指定日期,date(ms),指定一个毫秒数。相当于调用java.util.Date(ms)
+print 打印一个对象 print(user.name);
+println 打印一个对象以及回车换行符号，回车换号符号使用的是模板本身的，而不是本地系统的.如果仅仅打印一个换行符，则直接调用println() 即可
+nvl 函数nvl，如果对象为null，则返回第二个参数，否则，返回自己 nvl(user,"不存在")
+isEmpty 判断变量或者表达式是否为空，变量不存在，变量为null，变量是空字符串，变量是空集合，变量是空数组，此函数都将返回true
+isNotEmpty 同上，判断对象是否不为空
+has 变量名为参数，判断是否存在此"全局变量"，如 has(userList),类似于1.x版本的exist("userList"),但不需要输入引号了.注意，has和isEmpety 判断的是从java传到模板的全局变量，而不是临时变量
+hasAttrbiute 测试目标对象是否有此属性，hasAttribute(user,"name")
+assert 如果表达式为false，则抛出异常
+trim 截取数字或者日期，返回字符,如trim(12.456,2)返回"12.45",trim(date,'yyyy')返回"2017"
+trunc 截取数字，保留指定的小数位，如trunc(12.456,2) 输出是12.45.不推荐使用，因为处理float有问题，兼容原因保留了
+decode 一个简化的if else 结构，如 decode(a,1,"a=1",2,"a=2","不知道了"),如果a是1，这decode输出"a=1",如果a是2，则输出"a==2", 如果是其他值，则输出"不知道了"
+debug 在控制台输出debug指定的对象以及所在模板文件以及模板中的行数，如debug(1),则输出1 [在3行@/org/beetl/core/lab/hello.txt],也可以输出多个，如debug("hi",a),则输出hi,a=123,[在3行@/org/beetl/core/lab/hello.txt]
+parseInt 将数字或者字符解析为整形 如 parseInt("123");
+parseLong 将数字或者字符解析为长整形，parseInt(123.12);
+parseDouble 将数字或者字符解析为浮点类型 如parseDouble("1.23")
+range 接收三个参数，初始值，结束值，还有步增（可以不需要，则默认为1），返回一个Iterator，常用于循环中，如for(var i in range(1,5)) {print(i)},将依次打印1234.
+flush 强制io输出。
+json，将对象转成json字符串，如 var data = json(userList) 可以跟一个序列化规则 如,var data = json(userList,"[*].id:i"),具体参考 https://git.oschina.net/xiandafu/beetl-json
+pageCtx ，仅仅在web开发中，设置一个变量，然后可以在页面渲染过程中，调用此api获取，如pageCtx("title","用户添加页面")，在其后任何地方，可以pageCtx("title") 获取该变量
+type.new 创建一个对象实例，如 var user = type.new("com.xx.User"); 如果配置了IMPORT_PACKAGE，则可以省略包名，type.new("User")
+type.name 返回一个实例的名字，var userClassName = type.name(user),返回"User"
+global 返回一个全局变量值，参数是一个字符串，如 var user = global("user_"+i);
+cookie 返回指定的cookie对象 ，如var userCook = cookie("user"),allCookies = cookie();            
+        </pre>
+    </body>
+</html>

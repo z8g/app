@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- UserMapper.xml -->
+
+<mapper namespace="net.zhaoxuyang.blog.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="salt" column="salt"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="auth" column="auth"/>
+    </resultMap>
+    
+    <select id="getByEmail" parameterType="User" resultMap="UserResultMap">
+        select id , username , salt , password , email , gmt_create, auth
+        from user
+        where email = #{ email }
+    </select>  
+    
+    <select id="getAnd" parameterType="User" resultMap="UserResultMap">
+        select id , username , salt , password , email , gmt_create, auth
+        from user
+        <where>
+            <if test="id != null">
+                id = #{ id }
+            </if>
+            <if test="username != null">
+                and username = #{ username }
+            </if>
+            <if test="password != null">
+                and password = #{ password }
+            </if>
+            <if test="email != null">
+                and email = #{ email }
+            </if>
+        </where>
+    </select>
+    
+    <select id="list" resultMap="UserResultMap">
+        select id , username , salt , password , email , gmt_create, auth
+        from user
+    </select>
+    
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into user( id , username , salt , password , email , gmt_create , auth)
+        values( #{ id },  #{ username },  #{ salt },  #{ password },  #{ email },  #{ gmtCreate } , #{ auth })
+    </insert>
+    
+    <update id="update" parameterType="User">
+        update user
+        set id = #{ id }, username = #{ username }, salt = #{ salt }, password = #{ password }, email = #{ email }, gmt_create = #{ gmtCreate }, auth=#{auth}
+        where id = #{ id }
+    </update>
+    
+    <delete id="delete" parameterType="User">
+        delete from user
+        where id =#{ id }
+    </delete>
+    
+    <update id="updatePass" parameterType="User">
+        update user
+        set salt = #{ salt }, password = #{ password }
+        where id = #{ id }
+    </update>
+
+
+</mapper>

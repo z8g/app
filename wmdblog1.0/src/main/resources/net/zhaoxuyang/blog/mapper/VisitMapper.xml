@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ArticleMapper.xml -->
+
+<mapper namespace="net.zhaoxuyang.blog.mapper.VisitMapper">
+    
+    <insert id="insertVisitArticle" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into visit_article( id , visitor_id , article_id , gmt_create )
+        values( 0,  #{ visitorId },  #{ articleId },  #{ gmtCreate } )
+    </insert>
+    
+    <insert id="insertVisitUserHome" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into visit_user( id , visitor_id , user_id , gmt_create )
+        values( 0,  #{ visitorId },  #{ authorId },  #{ gmtCreate } )
+    </insert>
+    
+    <select id="countVisitUserHome" parameterType="User" resultType="int">
+        select count(*) id , visitor_id , user_id
+        from visit_user
+        where user_id = #{id}
+    </select>
+    
+    <select id="countVisitArticle" parameterType="Article" resultType="int">
+        select count(*) id , visitor_id , article_id
+        from visit_article
+        where article_id = #{id}
+    </select>
+
+</mapper>
