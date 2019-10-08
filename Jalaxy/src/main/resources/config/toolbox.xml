@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<toolbox>
+    <section id="string_util" title="字符串工具">
+        <tool file="string_util/figlet.xml" />
+        <tool file="string_util/hello_world.xml" />
+    </section>
+    <section id="download" title="下载">
+        <tool file="download/1.xml" />
+        <tool file="download/2.xml" />
+    </section>
+</toolbox>

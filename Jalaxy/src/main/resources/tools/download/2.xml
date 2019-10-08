@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tool id="download2" title="下载2" version="1.0">
+    <command>
+        if( $gender == 0 ){
+            echo $sname > $outputTxt;
+        } else {
+            echo $sno > $outputTxt;
+        }
+        cat $outputTxt > $outputData;
+    </command>
+    
+    <inputs>
+        <input name="sname" type="text" title="姓名" value="张三" />
+        <input name="sno" type="number" title="学号" value="2015" />
+        <input name="homework" type="file" title="作业" value="" />
+    </inputs>
+    
+    <outputs>
+        <output name="outputTxt" type="txt" />
+        <output name="outputData" type="data" />
+    </outputs>
+    
+    <help>
+        download2
+    </help>
+</tool>

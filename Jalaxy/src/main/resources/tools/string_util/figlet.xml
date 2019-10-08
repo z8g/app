@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tool id="homework" title="家庭作业" version="1.0">
+    <command>
+        figlet #inputStr > #outputTxt
+    </command>
+    
+    <inputs>
+        <input name="inputStr" type="text" title="作业" value="" />
+    </inputs>
+    
+    <outputs>
+        <output name="outputTxt" type="txt" />
+    </outputs>
+    
+    <help>
+        figlet
+    </help>
+</tool>
