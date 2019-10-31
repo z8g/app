@@ -1,0 +1,9 @@
+  _____   _   _  __     __  ___ 
+ | ____| | \ | | \ \   / / |_ _|
+ |  _|   |  \| |  \ \ / /   | | 
+ | |___  | |\  |   \ V /    | | 
+ |_____| |_| \_|    \_/    |___|  v1.0
+
+Soil salinization diagnosis system based on multi-source remote sensing data
+基于多源遥感数据的土壤盐渍化诊断系统 (RS-based Soil Salinization Diagnosis System)
+

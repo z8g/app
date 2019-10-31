@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="app-ui">
+    <head>
+        <#head title="上传文件 - ${appTitle}" />
+    </head>
+
+    <body class="app-ui layout-has-drawer layout-has-fixed-header">
+        <div class="app-layout-canvas">
+            <div class="app-layout-container">
+                
+                <!-- 侧边栏 -->
+                <#aside />
+
+                <!-- 头部 -->
+                <#header title="上传文件"/>
+
+                <!-- 主体 -->
+                <#main_upload />
+
+            </div>
+        </div>
+        
+        <!-- app模块 -->
+        <#apps_model />
+        
+        <!-- JS库 -->
+        <#script />
+
+        <!-- 页面JS -->
+        <#script_manage />
+    </body>
+
+</html>

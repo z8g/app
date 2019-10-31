@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="app-ui">
+    <head>
+        <!-- Meta -->
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+        <!-- Document title -->
+        <title>后台管理</title>
+
+        <meta name="description" content="" />
+        <meta name="author" content="rustheme" />
+        <meta name="robots" content="noindex, nofollow" />
+
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" href="${ctxPath}/assets/img/favicons/apple-touch-icon.png" />
+        <link rel="icon" href="${ctxPath}/assets/img/favicons/favicon.ico" />
+
+
+        <!-- Page JS Plugins CSS -->
+        <link rel="stylesheet" href="${ctxPath}/assets/js/plugins/slick/slick.min.css" />
+        <link rel="stylesheet" href="${ctxPath}/assets/js/plugins/slick/slick-theme.min.css" />
+
+        <!-- AppUI CSS stylesheets -->
+        <link rel="stylesheet" id="css-font-awesome" href="${ctxPath}/assets/css/font-awesome.css" />
+        <link rel="stylesheet" id="css-ionicons" href="${ctxPath}/assets/css/ionicons.css" />
+        <link rel="stylesheet" id="css-bootstrap" href="${ctxPath}/assets/css/bootstrap.css" />
+        <link rel="stylesheet" id="css-app" href="${ctxPath}/assets/css/app.css" />
+        <link rel="stylesheet" id="css-app-custom" href="${ctxPath}/assets/css/app-custom.css" />
+        <!-- End Stylesheets -->
+    </head>
+
+    <body class="app-ui layout-has-drawer layout-has-fixed-header">
+        <div class="app-layout-canvas">
+            <div class="app-layout-container">
+
+                <!-- 侧边栏 -->
+                <aside class="app-layout-drawer">
+                    <div class="app-layout-drawer-scroll">
+                        <nav class="drawer-main">
+                            <ul class="nav nav-drawer">
+
+                                <li class="nav-item nav-drawer-header">前后平台</li>
+                                <li class="nav-item">
+                                    <a href="${ctxPath}/home"><i class="ion-ios-monitor-outline"></i> 前台展示</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a href="${ctxPath}/manage"><i class="ion-ios-speedometer-outline"></i> 后台管理</a>
+                                </li>
+
+
+                                <li class="nav-item nav-drawer-header">文件模块</li>
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#apps-modal-upload">
+                                        <i class="ion-upload"></i> 上传文件
+                                    </a>
+                                </li>
+
+                                <li class="nav-item nav-item-has-subnav">
+                                    <a href="javascript:void(0)"><i class="ion-images"></i> 文件列表</a>
+                                    <ul class="nav nav-subnav" id="tiff-file-list">
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item nav-item-has-subnav">
+                                    <a href="javascript:void(0)"><i class="ion-document-text"></i> 操作日志</a>
+                                    <ul class="nav nav-subnav" id="tiff-log-list">
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- End drawer navigation -->
+
+                        <div class="drawer-footer">
+                            <p class="copyright">&copy; 2019 <a target="_blank" href="https://nwsuaf.edu.cn/">西北农林科技大学</a></p>
+                        </div>
+                    </div>
+                    <!-- End drawer scroll area -->
+                </aside>
+
+
+
+                <!-- 头部 -->
+                <header class="app-layout-header">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                                    <span class="sr-only">导航</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
+                                    <span class="sr-only">导航</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="collapse navbar-collapse" id="header-navbar-collapse">
+                            <span class="navbar-page-title nav navbar-left"> 后台管理</span>
+                            <form class="navbar-form navbar-right app-search-form" role="search">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input class="form-control" type="search" id="search-input" placeholder="输入文件名称……" />
+                                        <span class="input-group-btn">
+                                            <button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                            <span class="navbar-page-title nav">
+                                <input style="display: none" type="file" id="file" name="tiff" accept=".tif,.tiff" title="上传文件">
+                            </span>
+                            <ul class="nav navbar-nav navbar-right navbar-toolbar hidden-sm hidden-xs">
+                                <li>
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#apps-modal"><i class="ion-grid"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+
+                <!-- 主体 -->
+                <main class="app-layout-content">
+
+                    <!-- Page Content -->
+                    <div class="container-fluid p-y-md">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 form-group">
+                                <textarea class="form-control col-lg-12 col-sm-12" rows="5">${msg!session.msg}</textarea>
+                            </div>
+                            <div class="col-lg-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>
+                                            a
+                                        </h4>
+                                        <ul class="card-actions">
+                                            <li class="dropdown">
+                                                <button class="btn btn-lg" type="button" data-toggle="dropdown">
+                                                    <i class="ion-more"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li class="dropdown-header">文件管理</li>
+                                                    <li>
+                                                        <a tabindex="-1" href="#"> 删除</a>
+                                                    </li>
+                                                    <li>
+                                                        <a tabindex="-1" href="#"> 重命名</a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li class="dropdown-header">数据交互</li>
+                                                    <li>
+                                                        <a tabindex="-1" href="javascript:void(0)"> 导入采样点</a>
+                                                        <a tabindex="-1" href="javascript:void(0)"> 下载文件</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div id="drop-zone" class="card-block">
+                                        <div id="image-detail">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+
+            </div>
+        </div>
+
+        <!-- app模块 -->
+        <!-- Apps Modal -->
+        <!-- Opens from the button in the header -->
+        <div id="apps-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-sm modal-dialog modal-dialog-top">
+                <div class="modal-content">
+                    <!-- Apps card -->
+                    <div class="card m-b-0">
+                        <div class="card-header bg-app bg-inverse">
+                            <h4>应用程序</h4>
+                            <ul class="card-actions">
+                                <li>
+                                    <button data-dismiss="modal" type="button"><i class="ion-close"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-block">
+                            <div class="row text-center">
+                                <div class="col-xs-6">
+                                    <a class="card card-block m-b-0 bg-app-secondary bg-inverse" href="index.html">
+                                        <i class="ion-speedometer fa-4x"></i>
+                                        <p>后台</p>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <a class="card card-block m-b-0 bg-app-tertiary bg-inverse" href="frontend_home.html">
+                                        <i class="ion-laptop fa-4x"></i>
+                                        <p>前台</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 弹出模块 - 上传文件 -->
+        <div id="apps-modal-upload" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-top">
+                <div class="modal-content">
+                    <!-- Apps card -->
+                    <div class="card m-b-0">
+                        <div class="card-header bg-app bg-inverse">
+                            <h4>上传文件</h4>
+                            <ul class="card-actions">
+                                <li>
+                                    <button data-dismiss="modal" type="button"><i class="ion-close"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-block">
+                            <div class="row text-center">
+                                <div class="col-xs-12 form-horizontal">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" onkeydown="return false;" placeholder="选择 tif | tiff 图像文件" id="tiffFile" />
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary" >
+                                                    <i class="fa fa-folder-open"></i> 浏览...
+                                                    <input id="upload-image-file" type="file" name="file" accept=".tif,.tiff" style="display:none;" onchange="$('#tiffFile').val(this.value)" />
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button onclick="uploadImage();" class="btn btn-success btn-block btn-sm" type="button">上传 tif 图像</button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 form-horizontal">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" onkeydown="return false;" placeholder="选择纯文本文件" id="txtFile" />
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary" >
+                                                    <i class="fa fa-folder-open"></i> 浏览...
+                                                    <input id="upload-txt-file" type="file" name="file" accept=".txt" style="display:none;" onchange="$('#txtFile').val(this.value)" />
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button onclick="uploadTxt()" class="btn btn-success btn-block btn-sm" type="button">上传采样点</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-ui-mask-modal"></div>
+
+        <!-- JS库 -->
+        <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
+        <script src="${ctxPath}/assets/js/core/jquery.min.js"></script>
+        <script src="${ctxPath}/assets/js/core/bootstrap.min.js"></script>
+        <script src="${ctxPath}/assets/js/core/jquery.slimscroll.min.js"></script>
+        <script src="${ctxPath}/assets/js/core/jquery.scrollLock.min.js"></script>
+        <script src="${ctxPath}/assets/js/app.js"></script>
+        <script src="${ctxPath}/assets/js/app-custom.js"></script>
+
+        <!-- Page Plugins -->
+        <script src="${ctxPath}/assets/js/plugins/slick/slick.min.js"></script>
+        <script src="${ctxPath}/assets/js/plugins/chartjs/Chart.min.js"></script>
+        <script src="${ctxPath}/assets/js/plugins/flot/jquery.flot.min.js"></script>
+        <script src="${ctxPath}/assets/js/plugins/flot/jquery.flot.pie.min.js"></script>
+        <script src="${ctxPath}/assets/js/plugins/flot/jquery.flot.stack.min.js"></script>
+        <script src="${ctxPath}/assets/js/plugins/flot/jquery.flot.resize.min.js"></script>
+
+        <script src="${ctxPath}/assets/js/tiff.min.js"></script>
+
+        <!-- 页面JS -->
+
+        <script>
+                                            
+                                            $(function () {
+
+                                                loadFileList();
+                                                
+//                                               var dropzone = $('#drop-zone');
+//                                                dropzone.on('dragover', function (jqEvent) {
+//                                                    var event = jqEvent.originalEvent;
+//                                                    event.stopPropagation();
+//                                                    event.preventDefault();
+//                                                    event.dataTransfer.dropEffect = 'copy';
+//                                                });
+
+//                                                $('#file').on('change', function (event) {
+//                                                    show(event.target.files[0]);
+//                                                });
+
+//                                                dropzone.on('drop', function (jqEvent) {
+//                                                    var event = jqEvent.originalEvent;
+//                                                    event.stopPropagation();
+//                                                    event.preventDefault();
+//                                                    var files = event.dataTransfer.files;
+//                                                    if (files.length === 0) {
+//                                                        return;
+//                                                    }
+//                                                    show(files[0]);
+//                                                });
+                                            });
+                                           
+                                            function show(file) {
+                                                var reader = new FileReader();
+                                                reader.onload = (function (theFile) {
+                                                    return function (e) {
+                                                        console.log(e);
+                                                        var buffer = e.target.result;
+                                                        var tiff = new Tiff({buffer: buffer});
+                                                        var canvas = tiff.toCanvas();
+                                                        var width = tiff.width();
+                                                        var height = tiff.height();
+                                                        console.log(tiff);
+                                                        if (canvas) {
+                                                            $('#output').empty().append(canvas);
+                                                        }
+                                                    };
+                                                })(file);
+                                                reader.readAsArrayBuffer(file);
+                                            }
+
+                                            /*
+                                             * 上传图像
+                                             */
+                                            function uploadImage() {
+                                                var formData = new FormData();
+                                                var xmlhttp;
+                                                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                                    xmlhttp = new XMLHttpRequest();
+                                                } else {// code for IE6, IE5
+                                                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                                }
+                                                xmlhttp.open("POST", "/api/upload/image", true);
+                                                xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                                                formData.append("file", document.getElementById("upload-image-file").files[0]);
+                                                xmlhttp.send(formData);
+                                                xmlhttp.onreadystatechange = function () {
+                                                    if (xmlhttp.readyState === 4) {
+                                                        if (xmlhttp.status === 200) {
+                                                            var data = JSON.parse(xmlhttp.responseText);
+                                                            console.log(data);
+                                                            loadFileList();
+                                                            alert(data['name'] + '上传' + (data['success'] ? '成功' : '失败'));
+                                                        } else {
+                                                            alert('上传失败!');
+                                                            console.log("上传失败" + xmlhttp.responseText);
+                                                        }
+                                                    }
+                                                };
+                                            }
+
+                                            /*
+                                             * 上传纯文本文件
+                                             */
+                                            function uploadTxt() {
+                                                var formData = new FormData();
+                                                var xmlhttp;
+                                                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                                    xmlhttp = new XMLHttpRequest();
+                                                } else {// code for IE6, IE5
+                                                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                                }
+                                                xmlhttp.open("POST", "/api/upload/txt", true);
+                                                xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                                                formData.append("file", document.getElementById("upload-txt-file").files[0]);
+                                                xmlhttp.send(formData);
+                                                xmlhttp.onreadystatechange = function () {
+                                                    if (xmlhttp.readyState === 4) {
+                                                        if (xmlhttp.status === 200) {
+                                                            var data = JSON.parse(xmlhttp.responseText);
+                                                            console.log(data);
+                                                            loadFileList();
+                                                            alert(data['name'] + '上传' + (data['success'] ? '成功' : '失败'));
+                                                        } else {
+                                                            alert('上传失败!');
+                                                            console.log("上传失败" + xmlhttp.responseText);
+                                                        }
+                                                    }
+                                                };
+                                            }
+
+                                            function loadFileList() {
+                                                //填充文件列表
+                                                $.ajax({
+                                                    type: "GET",
+                                                    url: "/api/file/list",
+                                                    success: function (data) {
+//                                                                    console.log("文件列表：");
+//                                                                    for (var index in data) {
+//                                                                        console.log(index + ": " + data[index]);
+//                                                                    }
+                                                        var tiffFileListObject = $('#tiff-file-list');
+                                                        tiffFileListObject.empty();
+                                                        var content = '';
+                                                        for (var index in data) {
+                                                            content += '<li><a href="javascript:void(0)">' + data[index] + '</a></li>\n';
+                                                        }
+                                                        tiffFileListObject.append(content);
+                                                    },
+                                                    fail: function () {
+                                                        console.log("获取文件列表失败！");
+                                                    },
+                                                    dataType: "json"
+                                                });
+                                                //填充日志列表
+                                                $.ajax({
+                                                    type: "GET",
+                                                    url: "/api/log/list",
+                                                    success: function (data) {
+                                                        var tiffFileListObject = $('#tiff-log-list');
+                                                        tiffFileListObject.empty();
+                                                        var content = '';
+                                                        for (var index in data) {
+                                                            content += '<li><a href="javascript:void(0)">' + data[index] + '</a></li>\n';
+                                                        }
+                                                        tiffFileListObject.append(content);
+                                                    },
+                                                    fail: function () {
+                                                        console.log("获取日志列表失败！");
+                                                    },
+                                                    dataType: "json"
+                                                });
+                                                //渲染侧边栏
+                                                App.initHelpers('slick');
+                                            }
+
+                                            function fileDetail(name) {
+                                                let isTif = name.endsWith('.tif');
+                                                if (isTif) {
+                                                    var xhr = new XMLHttpRequest();
+                                                    xhr.open('POST', '/api/file/image?name=' + name, true);
+                                                    xhr.responseType = 'arraybuffer';
+                                                    xhr.onload = function (e) {
+                                                            if (this.status === 200) {           
+                                                            var buffer = xhr.response; // 返回 ArrayBuffer
+                                                            var tiff = new Tiff({buffer: buffer});
+                                                            var canvas = tiff.toCanvas();
+                                                            var width = tiff.width();
+                                                            var height = tiff.height();
+                                                            if (canvas) {
+                                                                $('#image-detail').empty().append(canvas);
+                                                            }
+                                                        }
+                                                    };
+                                                    xhr.send(null);
+                                                }
+                                                
+                                            }
+
+        </script>
+    </body>
+
+</html>

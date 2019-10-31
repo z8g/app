@@ -1,0 +1,41 @@
+<header class="app-layout-header">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
+                    <span class="sr-only">导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="header-navbar-collapse">
+            <span class="navbar-page-title nav navbar-left"> ${title}</span>
+            <form class="navbar-form navbar-right app-search-form" role="search">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" type="search" id="search-input" placeholder="输入文件名称……" />
+                        <span class="input-group-btn">
+                            <button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+            <span class="navbar-page-title nav">
+                <input style="display: none" type="file" id="file" name="tiff" accept=".tif,.tiff" title="上传文件">
+            </span>
+            <ul class="nav navbar-nav navbar-right navbar-toolbar hidden-sm hidden-xs">
+                <li>
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#apps-modal"><i class="ion-grid"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

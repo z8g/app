@@ -1,0 +1,48 @@
+<aside class="app-layout-drawer">
+    <div class="app-layout-drawer-scroll">
+        <nav class="drawer-main">
+            <ul class="nav nav-drawer">
+
+                <li class="nav-item nav-drawer-header">前后平台</li>
+                <li class="nav-item">
+                    <a href="${ctxPath}/home"><i class="ion-ios-monitor-outline"></i> 前台展示</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="${ctxPath}/manage"><i class="ion-ios-speedometer-outline"></i> 后台管理</a>
+                </li>
+                
+
+                <li class="nav-item nav-drawer-header">文件模块</li>
+                <li class="nav-item">
+                    <a href="${ctxPath}/upload">
+                        <i class="ion-upload"></i> 上传文件
+                    </a>
+                </li>
+
+                <li class="nav-item nav-item-has-subnav">
+                    <a href="javascript:void(0)"><i class="ion-images"></i> 文件列表</a>
+                    <ul class="nav nav-subnav" id="tiff-file-list">
+                        @for(var item in tiffFileList) {
+                            <li><a href="javascript:void(0)">${item}</a></li>
+                        @}
+                    </ul>
+                </li>
+
+                <li class="nav-item nav-item-has-subnav">
+                    <a href="javascript:void(0)"><i class="ion-document-text"></i> 操作日志</a>
+                    <ul class="nav nav-subnav" id="tiff-log-list">
+                        @for(var item in tiffLogList){
+                            <li><a href="javascript:void(0)">${item}</a></li>
+                        @}
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- End drawer navigation -->
+
+        <div class="drawer-footer">
+            <p class="copyright">&copy; 2019 <a target="_blank" href="https://nwsuaf.edu.cn/">西北农林科技大学</a></p>
+        </div>
+    </div>
+    <!-- End drawer scroll area -->
+</aside>
