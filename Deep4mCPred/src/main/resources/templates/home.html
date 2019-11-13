@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <#head title="Home" />
+    </head>
+
+    <body>
+
+        <div class="container">
+            <#nav />
+
+            <section class="row" id="home">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Home</h2>
+                        </div>
+                        <div class="panel-body">
+                            <blockquote>
+                                <h4>
+                                    <strong>Deep4mCPred</strong>: a deep learning-based approach for DNA N4-methylcytosine site prediction
+                                </h4>
+                                <hr />
+                                <p>
+                                    DNA N4-methylcytosine (4mC), an important epigenetic modification, is less studied than other type of methylations. Effective methods of 4mC site detection is vital to understand its mechanisms. Experimental methods are time-consuming and costly. Although a few 4mC detection methods based on machine learning (ML) have been proposed in the last two years. Performances of constructed ML methods depends heavily on handcrafted features. Due to many biological functions of 4mC are not understood. It is big challenge to extract enough good features to train a ML model.
+                                </p>
+                                <p>
+                                    Deep4mCPred is a web server based on deep learning method of 4mC detection.
+                                </p>
+                                <p class="pull-right">
+                                    <a class="btn btn-warning btn-sm" href="${ctxPath}/about">Help</a>
+                                    <a class="btn btn-success btn-sm" href="${ctxPath}/server">Go to use it</a>
+                                    <a class="btn btn-primary btn-sm" href="${ctxPath}/job">Query your job</a>
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <#footer />
+        </div>
+    </body>
+</html>

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <#head title="Server" />
+    </head>
+
+    <body>
+
+        <div class="container">
+            <#nav />
+
+            <section class="row" id="server">
+
+                <div class="col-md-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Server</h2>
+                        </div>
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">
+                                    Enter Sequence String
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab">
+                                    Upload File
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="panel-body">
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <form class="col-md-12" action="job/sequence" method="POST" target="_blank">
+                                        <div class="form-group">
+                                            <label class="control-label">Select category:</label>
+                                            <div class="form-inline">
+                                                <label class="form-control"><input type="checkbox" name="categories" value="A" checked="checked"> A</label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="C" checked="checked"> C </label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="D" checked="checked"> D</label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="Gpick"> Gpick</label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="Gsub"> Gsub</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Select Input type:</label>
+                                            <div class="form-inline">
+                                                <label class="form-control"><input type="radio" name="inputType" value="file" checked="checked" > file</label>
+                                                <label class="form-control"><input type="radio" name="inputType" value="fixed"> fixed </label>
+                                            </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="sequence">Input your sequence(<a id="example">Example</a>):</label>
+                                            <textarea class="form-control" placeholder="Input your sequence: [result = categoryId MOD 2]" name="sequence" id="sequence" rows="6" required="required"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <!--                                <button class="btn btn-success btn-block" id="sequence-submit-btn">Submit Sequence</button>-->
+                                            <button class="btn btn-success btn-block" type="submit">Submit Sequence</button>
+                                        </div>  
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade in" id="tab2">
+                                    <form class="col-md-12" enctype="multipart/form-data" action="/job/upload" method="POST" target="_blank">
+                                        <div class="form-group">
+                                            <label class="control-label">Select category:</label>
+                                            <div class="form-inline">
+                                                <label class="form-control"><input type="checkbox" name="categories" value="A" checked="checked"> A</label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="C" checked="checked"> C </label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="D" checked="checked"> D</label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="Gpick"> Gpick</label>
+                                                <label class="form-control"><input type="checkbox" name="categories" value="Gsub"> Gsub</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Select Input type:</label>
+                                            <div class="form-inline">
+                                                <label class="form-control"><input type="radio" name="inputType" value="file"> file</label>
+                                                <label class="form-control"><input type="radio" name="inputType" value="fixed" checked="checked" > fixed </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Or upload a fasta file: </label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" onkeydown="return false;" placeholder="Select input file..." id="textFileName" />
+                                                <label class="input-group-btn">
+                                                    <span class="btn btn-primary">
+                                                        <i class="fa fa-folder-open"></i> Browse...
+                                                        <input type="file" name="file" style="display:none;" onchange="$('#textFileName').val(this.value)" required="required" />
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button class="btn btn-primary btn-block" type="submit">Submit File</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <#footer />
+
+
+            <script>
+
+                /**
+                 * 用户选择下拉框时，根据类别ID，从服务器请求样例数据，添加到文本域中
+                 * @type type
+                 */
+                $('#example').bind('click', function () {
+                    var categoryId = Math.floor(Math.random() * 6);
+                    //var sequence = $('#sequence').val();
+                    console.log('Example:' + categoryId);
+                    //console.log('sequence:' + sequence);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/example',
+                        data: {
+                            id: categoryId
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            $('#sequence').text(data);
+                        },
+                        fail: function () {
+                            alert('Fail !');
+                        }
+                    });
+                });
+            </script>
+        </div>
+
+
+    </body>
+</html>

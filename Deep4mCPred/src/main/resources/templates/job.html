@@ -1,0 +1,65 @@
+
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <#head title="Job" />
+    </head>
+
+    <body>
+
+        <div class="container">
+            <#nav />
+
+            <section class="row" id="job">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>
+                                Job List | Your Job ID <code>${jobId!}</code> 
+                                <a href="${ctxPath}/job/${jobId!}">Query it</a></h2>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table" id="job-list">
+                                <thead>
+                                    <tr>
+                                        <th>Job ID</th>
+                                        <th>Submit Time</th>
+                                        <th>status</th>
+                                        <th>Output Data Set</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?
+                                    for(var jobLP in jobList){
+                                    ?>
+                                    <tr>
+                                        <td>${jobLP.jobId}</td>
+                                        <td>${jobLP.time}</td>
+                                        <td><span class="${jobLP.status == 'success' ? 'text-success':'text-danger'}">${jobLP.status}</span></td>
+                                        <td><a href="${ctxPath}/job/${jobLP.jobId}">Details</a></td>
+                                    </tr>
+                                    <?    
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <#footer />
+
+
+        </div>
+
+        <script>
+            $('#job-list').dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        </script>
+
+    </body>
+</html>

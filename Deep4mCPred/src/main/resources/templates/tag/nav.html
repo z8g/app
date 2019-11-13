@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default" id="nav">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNav">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">
+            Deep4mCPred
+        </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNav">
+        <ul class="nav navbar-nav">
+            <li><a href="${ctxPath}/home">Home</a></li>
+            <li><a href="${ctxPath}/server">Server</a></li>
+            <li><a href="${ctxPath}/help">help</a></li>
+            <li><a href="${ctxPath}/job">Job</a></li>
+            <li><a href="${ctxPath}/contact">Contact</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" action="${ctxPath}/query" target="_blank">
+            <div class="form-group">
+                <input class="form-control" type="search" name="jobId" placeholder="Input Job ID" />
+            </div>
+            <div class="form-group">
+                <button class="form-control" type="submit">Query Job</button>
+            </div>
+        </form>
+    </div>
+</nav>

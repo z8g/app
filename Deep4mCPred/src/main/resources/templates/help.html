@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <#head title="About" />
+    </head>
+
+    <body>
+
+        <div class="container">
+            <#nav />
+
+            <section class="row" id="about">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Help</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <h3 class="col-md-12">1. InputData(sequence or file)</h3>
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/1.png" title="sequence" alt="sequence.png" width="100%"/>
+                                        <strong>sequence</strong>
+                                    </p>
+
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/2.png" title="file" alt="file.png" width="100%"/>
+                                        <strong>file</strong>
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h3 class="col-md-12">2. Result of the job</h3>
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/3.png" title="result" alt="result.png" width="100%"/>
+                                        <strong>result</strong>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <h3 class="col-md-12">3. Job list and detials</h3>
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/4.png" title="list" alt="list.png" width="100%"/>
+                                        <strong>list</strong>
+                                    </p>
+
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/5.png" title="detials" alt="detials.png" width="100%"/>
+                                        <strong>detials</strong>
+                                    </p> 
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <h3 class="col-md-12">4. Download (txt | json | xls)</h3>
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/6.png" title="txt" alt="txt.png" width="100%"/>
+                                        <strong>txt</strong>
+                                    </p>
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/7.png" title="json" alt="json.png" width="100%"/>
+                                        <strong>json</strong>
+                                    </p>
+                                    <p class="text-center">
+                                        <img src="${ctxPath}/img/8.png" title="xls" alt="xls.png" width="100%"/>
+                                        <strong>xls</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <#footer />
+        </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <#head title="Job Result" />
+    </head>
+
+    <body>
+
+        <div class="container">
+            <#nav />
+
+            <section class="row" id="job-result">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>
+                                Job Result 
+                                <code>${jobId}</code>
+                            </h2>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">Job Id: ${jobId!}</li>
+                                <li class="list-group-item">Categories: ${categories!}</li>
+                                <li class="list-group-item">Input Type: ${inputType!}</li>
+                                <li class="list-group-item">Upload File Is Save: ${isSave!}</li>
+                                <li class="list-group-item">Run Result: ${runResult!}</li>
+
+                            </ul>
+                            <?
+                            if(runResult){
+                            ?>
+                            <p class="well-sm">
+                                <strong class="label-info label">Output Set</strong>
+                                <span class="btn-group pull-right">
+                                    <a href="${ctxPath}/job/${jobId}.txt" target="_blank" class="btn btn-default" >txt</a>
+                                    <a href="${ctxPath}/job/${jobId}.json" target="_blank" class="btn btn-warning">json</a>
+                                    <a href="${ctxPath}/job/${jobId}.xls" target="_blank" class="btn btn-success">xls</a>
+                                </span>
+                            </p>
+
+                            <table class="table" id="job-result-list">
+
+                                <thead>
+                                    <tr>
+                                        <th>title</th>
+                                        <th>position</th>
+                                        <th>site</th>
+                                        <th>probability</th>
+                                        <th>protease</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?
+                                    for(var outputLP in outputSet){
+                                    ?>
+                                    <tr>
+                                        <td>${outputLP.title}</td>
+                                        <td>${outputLP.position}</td>
+                                        <td>${outputLP.site}</td>
+                                        <td>${outputLP.probability}</td>
+                                        <td>${outputLP.protease}</td>
+                                    </tr>
+                                    <?    
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                            <?    
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <#footer />
+        </div>
+
+
+        <?
+        if(runResult){
+        ?>
+        <script>
+            $('#job-result-list').dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        </script>
+        <?
+        }
+        ?>
+
+    </body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" /><!--设置编码-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--强制Chrome内核-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" /><!--移动端正确显示页面并正确缩放-->
+        <title>Deep4mCPred</title>
+        <link rel="shortcut icon" href="" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="plugins/datatables/css/jquery.datatables.min.css" />
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="plugins/datatables/js/jquery.datatables.min.js"></script>
+
+        <!--[if lt IE 9]>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.1/html5shiv-printshiv.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+        <![end if]-->
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-top" id="nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNav">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">
+                        Deep4mCPred
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNav">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#server">Server</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+
+                    </ul>
+                    <form class="navbar-form navbar-right" action="https://www.baidu.com/s" target="_blank">
+                        <div class="form-group">
+                            <input class="form-control" type="search" name="wd" placeholder="keyword..." />
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+
+            <section class="row" id="home">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Home</h2>
+                        </div>
+                        <div class="panel-body">
+                            <blockquote>
+                                <h4>
+                                    Deep4mCPred: a deep learning-based approach for DNA N4-methylcytosine site prediction
+                                </h4>
+                                <hr />
+                                <p>
+                                    DNA N4-methylcytosine (4mC), an important epigenetic modification, is less studied than other type of methylations. Effective methods of 4mC site detection is vital to understand its mechanisms. Experimental methods are time-consuming and costly. Although a few 4mC detection methods based on machine learning (ML) have been proposed in the last two years. Performances of constructed ML methods depends heavily on handcrafted features. Due to many biological functions of 4mC are not understood. It is big challenge to extract enough good features to train a ML model.
+                                </p>
+                                <p>
+                                    Deep4mCPred is a web server based on deep learning method of 4mC detection.
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="row" id="server">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Server</h2>
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="text-center">Enter Sequence String</h3>
+                             <div class="form-group">
+                                <label class="control-label">Select category:</label>
+                                <label class="form-control"><input class="category-checkbox" type="checkbox" name="categories" value="A" checked="checked"> A</label>
+                                <label class="form-control"><input class="category-checkbox" type="checkbox" name="categories" value="C"> C </label>
+                                <label class="form-control"><input class="category-checkbox" type="checkbox" name="categories" value="D"> D</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Select Input type:</label>
+                                <label class="form-control"><input type="radio" name="inputType" value="file" checked="checked" > file</label>
+                                <label class="form-control"><input type="radio" name="inputType" value="fixed"> fixed </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="sequence">Input your sequence(<a id="example">Example</a>):</label>
+                                <textarea class="form-control" placeholder="Input your sequence: [result = categoryId MOD 2]" id="sequence" rows="6" required="required"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-block" id="sequence-submit-btn">Submit Sequence</button>
+                            </div>
+
+                            <h3 class="text-center">Upload File</h3>
+                            <form class="col-md-12" enctype="multipart/form-data" action="http://localhost:8080/job/upload" method="post">
+                                <div class="form-group">
+                                    <label class="control-label">Select category:</label>
+                                    <label class="form-control"><input type="checkbox" name="categories" value="A" checked="checked"> A</label>
+                                    <label class="form-control"><input type="checkbox" name="categories" value="C"> C </label>
+                                    <label class="form-control"><input type="checkbox" name="categories" value="D"> D</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Select Input type:</label>
+                                    <label class="form-control"><input type="radio" name="inputType" value="file" checked="checked" > file</label>
+                                    <label class="form-control"><input type="radio" name="inputType" value="fixed"> fixed </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Or upload a fasta file: </label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" onkeydown="return false;" placeholder="Select input file..." id="textFileName" />
+                                        <label class="input-group-btn">
+                                            <span class="btn btn-primary">
+                                                <i class="fa fa-folder-open"></i> Browse...
+                                                <input type="file" name="file" style="display:none;" onchange="$('#textFileName').val(this.value)" required="required" />
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit">Submit File</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 其内容由 JS 生成数据并渲染 -->
+            <section class="row" id="result">
+            </section>
+
+            <section class="row" id="about">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>About</h2>
+                        </div>
+                        <div class="panel-body">
+                            <blockquote>
+                                <p>
+                                    DNA N4-methylcytosine (4mC), an important epigenetic modification, is less studied than other type of methylations. Effective methods of 4mC site detection is vital to understand its mechanisms. Experimental methods are time-consuming and costly. Although a few 4mC detection methods based on machine learning (ML) have been proposed in the last two years. Performances of constructed ML methods depends heavily on handcrafted features. Due to many biological functions of 4mC are not understood. It is big challenge to extract enough good features to train a ML model.
+                                </p>
+                                <p>
+                                    Deep4mCPred is a web server based on deep learning method of 4mC detection.
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="row" id="contact">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Contact</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Mail Address:
+                                </label>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Biochemistry &amp; Molecular Biology</li>
+                                    <li class="list-group-item">Biomedicine Discovery Institute</li>
+                                    <li class="list-group-item">Faculty of Medicine, Nursing and Health Sciences</li>
+                                    <li class="list-group-item">Monash University</li>
+                                    <li class="list-group-item">Melbourne, VIC 3800, Australia</li>
+                                </ul>
+                                <label class="control-label">
+                                    You can send your queries and suggestions to the developers: 
+                                    <a href="mailto:Jiangning.Song@monash.edu" target="_blank">Jiangning.Song@monash.edu</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="row">
+                <p class="text-center">
+                    Copyright © 2019 <a href="https://nwsuaf.edu.cn" target="_blank">Northwest A&amp;F University</a> All Rights Reserved |
+                    Address: No.3 Taicheng Road, Yangling, Shaanxi, China, 712100<br />
+                    TEL: +86(0)29 8708 2869 |
+                    Email: <a href="mailto:web@nwafu.edu.cn">web@nwafu.edu.cn</a>
+                </p>
+            </section>
+        </div>
+
+        <script>
+
+            /**
+             * 用户选择下拉框时，根据类别ID，从服务器请求样例数据，添加到文本域中
+             * @type type
+             */
+            $('#example').bind('click', function () {
+                var categoryId = Math.floor(Math.random()*6); 
+                //var sequence = $('#sequence').val();
+                console.log('Example:' + categoryId);
+                //console.log('sequence:' + sequence);
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/example',
+                    data: {
+                        id: categoryId
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        $('#sequence').text(data);
+                    },
+                    fail: function () {
+                        alert('Fail !');
+                    }
+                });
+            });            
+
+            // $('#categoryId').bind('click', function () {
+            //     var categoryId = $('#categoryId').val();
+            //     //var sequence = $('#sequence').val();
+            //     console.log('Select:' + categoryId);
+            //     //console.log('sequence:' + sequence);
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: 'example',
+            //         data: {
+            //             id: categoryId
+            //         },
+            //         success: function (data) {
+            //             console.log(data);
+            //             $('#sequence').text(data);
+            //         },
+            //         fail: function () {
+            //             alert('Fail !');
+            //         }
+            //     });
+            // });
+
+            /**
+             * 用户以文本域方式提交样例数据时，向服务器发送异步请求，并将结果渲染成表格
+             * String[] categories, String sequence, HttpSession session, String inputType
+             * @type type
+             */
+            $('#sequence-submit-btn').bind('click', function () {
+                //let categoryId = $('#categoryId').val();
+                //let categories = "A,C,D";
+                let sequence = $('#sequence').val();
+                //let inputType = "fixed";
+                //console.log(categories);
+                console.log(sequence);
+                //console.log(inputType);
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/job/sequence',
+                    data: {
+                        //categories : categories,
+                        sequence : sequence
+                        //inputType : inputType
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        //$('#sequence').text(data);
+                        createTable(data);
+                    },
+                    fail: function () {
+                        alert('Fail !');
+                    }
+                });
+            });
+
+            /**
+             * 创建并渲染表格
+             * @param {type} data 服务器返回的JSON数据
+             * @returns {undefined}
+             */
+            function createTable(data) {
+                let categoryId = data.category;
+                let outputs = data.outputs;
+
+                //构建标题下的内容
+                let categoryText = $('#categoryId option:eq(' + categoryId + ')').text();
+                let headerContent = 'Result ' +
+                        '<span class="label label-primary">' + categoryText + '</span>';
+
+                //构建tbody下的tr和td等内容
+                let tbodyContent = '';
+                $.each(outputs, function (k, v) {
+
+                    //渲染sequence列
+                    //将第21个字符的颜色改为红色
+                    let RED_STYLE = 'text-danger';
+                    let before = v.sequence.substring(0, 20);
+                    let after = v.sequence.substring(21);
+                    let center = v.sequence[20];
+                    let sequenceText = before + '<span class="' + RED_STYLE + '">' + center + '</span>' + after;
+
+                    //渲染4mc列
+                    //如果返回结果为YES，则显示为绿色，NO，显示为红色，NULL显示为灰色
+                    let resultStyle = 'text-defualt';
+                    switch (v.result) {
+                        case 'YES':
+                            resultStyle = 'text-success';
+                            break;
+                        case 'NO':
+                            resultStyle = 'text-danger';
+                            break;
+                    }
+                    let resultText = '<strong class="' + resultStyle + '">' + v.result + '</strong>';
+
+                    //构建tr
+                    let trText = '<tr>' +
+                            '<td>' + v.title + '</td>' +
+                            '<td>' + sequenceText + '</td>' +
+                            '<td>' + resultText + '</td>' +
+                            '</tr>';
+                    tbodyContent += trText;
+                });
+
+                //最终要生成的内容
+                let content =
+                        '<div class="col-md-12">' +
+                        '<div class="panel panel-default">' +
+                        '<div class="panel-heading">' +
+                        '<h2>' + headerContent + '</h2>' +
+                        '</div>' +
+                        '<div class="panel-body">' +
+                        '<table id="result-list">' +
+                        '<thead>' +
+                        '<tr>' +
+                        '<th>Title</th>' +
+                        '<th>Sequence</th>' +
+                        '<th>4mC</th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody>' +
+                        tbodyContent +
+                        '</tbody>' +
+                        '</table>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+
+
+
+                //生成结果
+                $('#result').empty();//生成之前先清空其内容
+                $('#result').append(content);
+
+                //使用datatable插件渲染表格
+                $('#result-list').dataTable({
+                    "sPaginationType": "full_numbers"
+                });
+            }
+
+
+        </script>
+    </body>
+</html>
