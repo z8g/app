@@ -1,0 +1,3 @@
+com\duqiaoli\apple\AppleApplication.class
+com\duqiaoli\apple\controller\AppleController.class
+com\duqiaoli\apple\config\MVCConfiguration.class

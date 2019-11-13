@@ -1,0 +1,12 @@
+
+#con{
+  width: 80%;
+  margin: 0px auto;
+}
+text{
+  text-align: center;
+  margin-bottom: 10px;
+}
+#upload-button{
+
+}

@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view id='con'>
+<text>苹果叶片病虫害种类识别</text>
+<view id='upload-button'>
+<button bindtap="uploadimg">点击上传图片</button>
+</view>
+<image src='{{source}}' style='width:600rpx; height:600rpx' />
+</view>
