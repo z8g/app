@@ -1,1 +1,0 @@
-python3 /Code/project/tiff/tiff.py -i /Code/project/tiff/test.tif -x 1 -y 1
